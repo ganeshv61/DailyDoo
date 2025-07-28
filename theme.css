@@ -1,0 +1,56 @@
+/* Theme variables */
+:root {
+  --primary-color: #ff8a65;
+  --primary-dark: #e65100;
+  --text-color: #333;
+  --bg-color: #fff8f1;
+  --secondary-bg: #ffe0b2;
+  --card-bg: #ffffff;
+  --error-color: #ef5350;
+  --success-color: #66bb6a;
+}
+
+[data-theme="dark"] {
+  --primary-color: #ff7043;
+  --primary-dark: #ff8a65;
+  --text-color: #f5f5f5;
+  --bg-color: #121212;
+  --secondary-bg: #1e1e1e;
+  --card-bg: #2d2d2d;
+  --error-color: #f44336;
+  --success-color: #4caf50;
+}
+
+/* Base styles */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to bottom right, var(--bg-color), var(--secondary-bg));
+  min-height: 100vh;
+  color: var(--text-color);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* Theme toggle button */
+.theme-toggle {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+#themeBtn {
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/* Headings */
+h1, h2 {
+  text-align: center;
+  color: var(--primary-dark);
+  margin-top: 30px;
+}

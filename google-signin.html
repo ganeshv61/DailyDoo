@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign in with Google - DailyDoo</title>
+  <link rel="stylesheet" href="google-signin.css">
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Welcome to DailyDoo!</h1>
+  </header>
+  <div class="container">
+    <h2>Sign in with Google</h2>
+    <p>Please enter your registered email to sign in with Google.</p>
+    <form id="googleSigninForm">
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" placeholder="Email Address" required>
+      </div>
+      <button type="submit" class="google-btn">
+        <img src="https://img.icons8.com/color/16/000000/google-logo.png" alt="Google">
+        Sign in with Google
+      </button>
+      <div class="back-link">
+        <p>Back to <a href="login.html">Login</a></p>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('googleSigninForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const email = document.getElementById('email').value.trim();
+      const users = JSON.parse(localStorage.getItem('users')) || [];
+      const user = users.find(u => u.email === email);
+
+      if (user) {
+        localStorage.setItem('rememberedUser', email);
+        alert('Google authentication successful (simulated).');
+        window.location.href = 'homepage.html';
+      } else {
+        alert('Email not found. Please register or use a different email.');
+      }
+    });
+
+    // Handle Enter key submission
+    document.querySelectorAll('#googleSigninForm input').forEach(input => {
+      input.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          document.getElementById('googleSigninForm').dispatchEvent(new Event('submit'));
+        }
+      });
+    });
+
+    // Auto-fill email if remembered
+    document.addEventListener('DOMContentLoaded', function() {
+      const rememberedEmail = localStorage.getItem('rememberedUser');
+      if (rememberedEmail && document.getElementById('email')) {
+        document.getElementById('email').value = rememberedEmail;
+      }
+    });
+  </script>
+
+  <script src="js/theme.js"></script>
+</body>
+</html>

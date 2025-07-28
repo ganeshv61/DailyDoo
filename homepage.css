@@ -1,0 +1,178 @@
+/* Task Form */
+    #taskForm {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background: var(--card-bg);
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+    }
+
+    #taskForm label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 5px;
+      color: var(--primary-dark);
+    }
+
+    #taskForm input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    #taskForm button {
+      grid-column: span 2;
+      padding: 12px;
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    /* Task Table */
+    table {
+      width: 90%;
+      max-width: 1100px;
+      margin: 20px auto;
+      border-collapse: collapse;
+      background: var(--card-bg);
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    th {
+      background: var(--primary-color);
+      color: white;
+      padding: 12px;
+    }
+
+    td {
+      padding: 10px;
+      text-align: center;
+      border-bottom: 1px solid var(--secondary-bg);
+    }
+
+    tr:nth-child(even) td {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .table-btn {
+      padding: 6px 12px;
+      margin: 2px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    /* Completion Message */
+    #completionMessage {
+      text-align: center;
+      margin: 30px auto;
+      padding: 20px;
+      max-width: 600px;
+      background: var(--card-bg);
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    #quoteBox {
+      font-style: italic;
+      margin-top: 10px;
+    }
+
+    /* Profile Styles */
+    .profile-container {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1000;
+    }
+    
+    .profile-icon {
+      font-size: 24px;
+      cursor: pointer;
+      background: var(--primary-color);
+      color: white;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      transition: transform 0.2s;
+    }
+    
+    .profile-icon:hover {
+      transform: scale(1.1);
+    }
+    
+    .profile-details {
+      position: absolute;
+      right: 0;
+      top: 50px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      padding: 15px;
+      width: 250px;
+      display: none;
+      border: 1px solid #eee;
+      z-index: 1001;
+    }
+    
+    .profile-header {
+      font-weight: bold;
+      margin-bottom: 10px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #eee;
+      color: var(--primary-dark);
+    }
+    
+    #userDetails div {
+      margin: 8px 0;
+      color: #333;
+    }
+    
+    #userDetails span {
+      font-weight: bold;
+      color: var(--primary-dark);
+    }
+    
+    #userDetails img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 10px;
+      border: 2px solid var(--primary-color);
+    }
+    
+    #userDetails .logout-btn {
+      margin-top: 15px;
+      padding: 8px 15px;
+      background: #e74c3c;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      width: 100%;
+    }
+    
+    table a {
+      color: var(--primary-color);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    
+    table a:hover {
+      text-decoration: underline;
+    }

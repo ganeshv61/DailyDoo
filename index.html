@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - DailyDoo</title>
+  <link rel="stylesheet" href="login.css">
+  <link rel="stylesheet" href="theme.css">
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Welcome to DailyDoo!</h1>
+  </header>
+  <div class="container">
+    <h2>Login</h2>
+    <form id="loginForm">
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" placeholder="Email Address" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Password" required>
+      </div>
+      <div class="checkbox-group">
+        <input type="checkbox" id="rememberMe">
+        <label for="rememberMe">Remember me</label>
+      </div>
+      <button type="submit" class="login-btn">Login</button>
+      <button type="button" class="google-btn" onclick="window.location.href='google-signin.html'">
+        <img src="https://img.icons8.com/color/16/000000/google-logo.png" alt="Google">
+        Sign in with Google
+      </button>
+      <div class="forgot-password">
+        <a href="forgot-password.html" id="forgotPassword">Forgot password?</a>
+      </div>
+      <div class="create-account">
+        <p>Don't have an account? <a href="createaccount.html">Create one</a></p>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      console.log('Login form submitted at', new Date().toLocaleString());
+      
+      const email = document.getElementById('email').value.trim();
+      const password = CryptoJS.SHA256(document.getElementById('password').value).toString();
+      const rememberMe = document.getElementById('rememberMe').checked;
+
+      console.log('Email:', email);
+      console.log('Hashed password:', password);
+      console.log('Remember me:', rememberMe);
+
+      const users = JSON.parse(localStorage.getItem('users')) || [];
+      console.log('Users in localStorage:', users);
+      const user = users.find(u => u.email === email && u.password === password);
+
+      if (user) {
+        console.log('User found:', user);
+        localStorage.setItem('rememberedUser', email);
+        console.log('Set rememberedUser:', email);
+        window.location.href = 'homepage.html';
+      } else {
+        console.error('Invalid email or password for email:', email);
+        alert('Invalid email or password');
+      }
+    });
+
+    // Handle Enter key submission
+    document.querySelectorAll('#loginForm input').forEach(input => {
+      input.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          document.getElementById('loginForm').dispatchEvent(new Event('submit'));
+        }
+      });
+    });
+
+    // Auto-fill email if remembered
+    document.addEventListener('DOMContentLoaded', function() {
+      const rememberedEmail = localStorage.getItem('rememberedUser');
+      console.log('Auto-fill rememberedEmail:', rememberedEmail);
+      if (rememberedEmail && document.getElementById('email')) {
+        document.getElementById('email').value = rememberedEmail;
+      }
+    });
+  </script>
+
+  <script src="js/theme.js"></script>
+</body>
+</html>
